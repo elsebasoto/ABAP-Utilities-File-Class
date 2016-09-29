@@ -25,6 +25,15 @@ public section.
       FILES type ZBCTPFILES
     exceptions
       FILES_IS_INITIAL .
+  class-methods CALCULATE_FILE_SIZE
+    importing
+      TYPE type CHAR10 default 'ASC'
+      DATA type ANY TABLE
+    preferred parameter TYPE
+    returning
+      value(SIZE) type I
+    exceptions
+      FORMAT_NOT_SUPPORTED .
 
 **************************************************************************
 *   Private section of class.                                            *
@@ -87,6 +96,9 @@ protected section.
 *
 * Message class: EARC
 *021   No archive files exist that can be opened
+*
+* Message class: TD
+*873   Format & not supported
 
 ----------------------------------------------------------------------------------
 Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2016. Sap Release 700
