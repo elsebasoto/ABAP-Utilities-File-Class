@@ -34,6 +34,16 @@ public section.
       value(SIZE) type I
     exceptions
       FORMAT_NOT_SUPPORTED .
+  type-pools ABAP .
+  class CL_ABAP_CHAR_UTILITIES definition load .
+  class-methods STRINGTAB_TO_STANDARDTAB
+    importing
+      INPUT type STRINGTAB
+      SPLIT type ABAP_CHAR1 default CL_ABAP_CHAR_UTILITIES=>HORIZONTAL_TAB
+    exporting
+      value(OUTPUT) type STANDARD TABLE
+    exceptions
+      ASSIGN_ERROR .
 
 **************************************************************************
 *   Private section of class.                                            *
@@ -91,11 +101,17 @@ protected section.
 *Messages
 *----------------------------------------------------------
 *
+* Message class: AFWBM_MAIN
+*036   Internal error in the tool for assigning characteristic values
+*
 * Message class: BA
 *012   Cannot open archive file &
 *
 * Message class: EARC
 *021   No archive files exist that can be opened
+*
+* Message class: SAPLWSPO
+*011   Error in assignment of field symbol &1 in &2
 *
 * Message class: TD
 *873   Format & not supported
