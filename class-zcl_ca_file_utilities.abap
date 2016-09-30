@@ -44,6 +44,14 @@ public section.
       value(OUTPUT) type STANDARD TABLE
     exceptions
       ASSIGN_ERROR .
+  class-methods FIXEDTAB_TO_STANDARDTAB
+    importing
+      INPUT type STRINGTAB
+      LENGTHS type INT4_TABLE
+    exporting
+      OUTPUT type STANDARD TABLE
+    exceptions
+      ASSIGN_ERROR .
 
 **************************************************************************
 *   Private section of class.                                            *
