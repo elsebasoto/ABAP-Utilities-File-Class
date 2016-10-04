@@ -52,6 +52,11 @@ public section.
       OUTPUT type STANDARD TABLE
     exceptions
       ASSIGN_ERROR .
+  class-methods FIXEDTAB_TO_STANDARDTAB_2
+    importing
+      INPUT type STRINGTAB
+    exporting
+      OUTPUT type STANDARD TABLE .
 
 **************************************************************************
 *   Private section of class.                                            *
@@ -97,6 +102,13 @@ protected section.
       FILENAME type ESEFTAPPL
     exporting
       FILE_TAB_ZIP type SWFTLISTI1 .
+  class-methods CATCH_TOO_LONG
+    importing
+      INPUT type STRING
+      AGGREGATE type I
+    changing
+      LENGTH type I
+      FIELD type ANY .
 
 **************************************************************************
 *   Types section of class.                                              *
