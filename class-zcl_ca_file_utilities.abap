@@ -19,12 +19,14 @@ class ZCL_CA_FILE_UTILITIES definition
 *"* do not include other source files here!!
 public section.
 
-  class-methods CREATE_ZIP_FILE_APP_SVR
-    importing
-      ZIP_NAME type ESEFTAPPL
-      FILES type ZBCTPFILES
-    exceptions
-      FILES_IS_INITIAL .
+  types:
+    BEGIN OF ty_otf,
+             copies TYPE num,
+             otf    TYPE tsfotf,
+           END OF ty_otf .
+  types:
+    ty_t_otf TYPE STANDARD TABLE OF ty_otf .
+
   class-methods CALCULATE_FILE_SIZE
     importing
       TYPE type CHAR10 default 'ASC'
@@ -34,16 +36,21 @@ public section.
       value(SIZE) type I
     exceptions
       FORMAT_NOT_SUPPORTED .
-  type-pools ABAP .
-  class CL_ABAP_CHAR_UTILITIES definition load .
-  class-methods STRINGTAB_TO_STANDARDTAB
+  class-methods CREATE_ZIP_FILE_APP_SVR
     importing
-      INPUT type STRINGTAB
-      SPLIT type ABAP_CHAR1 default CL_ABAP_CHAR_UTILITIES=>HORIZONTAL_TAB
-    exporting
-      value(OUTPUT) type STANDARD TABLE
+      ZIP_NAME type ESEFTAPPL
+      FILES type ZBCTPFILES
     exceptions
-      ASSIGN_ERROR .
+      FILES_IS_INITIAL .
+  class-methods FILESOURCE_FROM_PATH
+    importing
+      PATH type STRING
+    exporting
+      DRIVE type STRING
+      DRIVE_UNIT type STRING
+      REAL_PATH type STRING
+    exceptions
+      PATH_ERROR .
   class-methods FIXEDTAB_TO_STANDARDTAB
     importing
       INPUT type STRINGTAB
@@ -57,6 +64,28 @@ public section.
       INPUT type STRINGTAB
     exporting
       OUTPUT type STANDARD TABLE .
+  class-methods MERGE_OTF_INTO_1_PDF
+    importing
+      OTF_TABS type TY_T_OTF
+    exporting
+      PDF type XSTRING
+      FILESIZE type SO_OBJ_LEN .
+  type-pools ABAP .
+  class CL_ABAP_CHAR_UTILITIES definition load .
+  class-methods STANDARDTAB_TO_STRINGTAB
+    importing
+      INPUT type ANY TABLE
+      SPLITTER type ABAP_CHAR1 default CL_ABAP_CHAR_UTILITIES=>HORIZONTAL_TAB
+    exporting
+      OUTPUT type STRINGTAB .
+  class-methods STRINGTAB_TO_STANDARDTAB
+    importing
+      INPUT type STRINGTAB
+      SPLIT type ABAP_CHAR1 default CL_ABAP_CHAR_UTILITIES=>HORIZONTAL_TAB
+    exporting
+      value(OUTPUT) type STANDARD TABLE
+    exceptions
+      ASSIGN_ERROR .
 
 **************************************************************************
 *   Private section of class.                                            *
@@ -72,36 +101,12 @@ private section.
 *"* do not include other source files here!!
 protected section.
 
-  class-methods READ_FILE
-    importing
-      FILE type ZBCSFILES
-    exporting
-      LENGTH type I
-      FILE_DATA type SWFTLISTI1 .
-  class-methods CONVERT_BIN_TO_XSTRING
-    importing
-      LENGTH type I
-    changing
-      XSTRING_DATA type XSTRING
-      FILE_DATA type SWFTLISTI1 .
   class-methods ADD_FILE_TO_ZIP
     importing
       XSTRING_DATA type XSTRING
       FILE_NAME_IN_ZIP type ZBCSFILES-FILE_NAME_IN_ZIP
     changing
       value(ZIPPER) type ref to CL_ABAP_ZIP .
-  class-methods SAVE_ZIP
-    importing
-      ZIPPER type ref to CL_ABAP_ZIP
-    exporting
-      ZIP type XSTRING
-    changing
-      FILE_TAB_ZIP type SWFTLISTI1 .
-  class-methods DOWNLOAD_ZIP_FILE
-    importing
-      FILENAME type ESEFTAPPL
-    exporting
-      FILE_TAB_ZIP type SWFTLISTI1 .
   class-methods CATCH_TOO_LONG
     importing
       INPUT type STRING
@@ -109,6 +114,30 @@ protected section.
     changing
       LENGTH type I
       FIELD type ANY .
+  class-methods CONVERT_BIN_TO_XSTRING
+    importing
+      LENGTH type I
+    changing
+      XSTRING_DATA type XSTRING
+      FILE_DATA type SWFTLISTI1 .
+  class-methods DOWNLOAD_ZIP_FILE
+    importing
+      FILENAME type ESEFTAPPL
+    exporting
+      FILE_TAB_ZIP type SWFTLISTI1 .
+  class-methods READ_FILE
+    importing
+      FILE type ZBCSFILES
+    exporting
+      LENGTH type I
+      FILE_DATA type SWFTLISTI1 .
+  class-methods SAVE_ZIP
+    importing
+      ZIPPER type ref to CL_ABAP_ZIP
+    exporting
+      ZIP type XSTRING
+    changing
+      FILE_TAB_ZIP type SWFTLISTI1 .
 
 **************************************************************************
 *   Types section of class.                                              *
