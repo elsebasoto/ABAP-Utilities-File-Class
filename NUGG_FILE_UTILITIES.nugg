@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nugget name="FILE_UTILITIES">
+ <CLAS CLSNAME="ZCL_CA_FILE_UTILITIES" VERSION="1" LANGU="E" DESCRIPT="File Utilities" CATEGORY="00" EXPOSURE="2" STATE="1" RELEASE="0" CLSFINAL="X" CLSCCINCL="X" FIXPT="X" UNICODE="X" CLSBCCAT="00" DURATION_TYPE="0 " RISK_LEVEL="0 " ZSAPLINK_PLUGIN_MAJOR_VERSION="0 " ZSAPLINK_PLUGIN_MINOR_VERSION="1 " ZSAPLINK_PLUGIN_BUILD_VERSION="0 " ZSAPLINK_PLUGIN_INFO1="ZSAPLINK_CLASS is part of the main ZSAPLINK project --&gt; This plugin found there instead of ZSAPLINK_PLUGINS projects" ZSAPLINK_PLUGIN_INFO2="SAPLINK homepage: https://www.assembla.com/spaces/saplink/wiki" ZSAPLINK_PLUGIN_INFO3="Download from https://www.assembla.com/code/saplink/subversion/nodes" ZSAPLINK_PLUGIN_INFO4="and navigate to:  trunk -&gt; core -&gt; ZSAPLINK -&gt; CLAS -&gt; ZSAPLINK_CLASS.slnk">
+  <types CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="TY_OTF" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="1 " TYPTYPE="4" SRCROW1="11 " SRCCOLUMN1="4 " SRCROW2="14 " SRCCOLUMN2="23 " TYPESRC_LENG="0 " TYPESRC="BEGIN OF ty_otf,
+             copies TYPE num,
+             otf    TYPE tsfotf,
+           END OF ty_otf
+"/>
+  <types CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="TY_T_OTF" VERSION="1" LANGU="E" EXPOSURE="2" STATE="1" EDITORDER="2 " TYPTYPE="4" SRCROW1="16 " SRCCOLUMN1="4 " SRCROW2="16 " SRCCOLUMN2="41 " TYPESRC_LENG="0 " TYPESRC="ty_t_otf TYPE STANDARD TABLE OF ty_otf
+"/>
+  <localImplementation>*&quot;* local class implementation for public class
+*&quot;* use this source file for the implementation part of
+*&quot;* local helper classes</localImplementation>
+  <localTypes>*&quot;* use this source file for any type declarations (class
+*&quot;* definitions, interfaces or data types) you need for method
+*&quot;* implementation or private method&apos;s signature</localTypes>
+  <localMacros>*&quot;* use this source file for any macro definitions you need
+*&quot;* in the implementation part of the class</localMacros>
+  <typeUsage CLSNAME="ZCL_CA_FILE_UTILITIES" TYPEGROUP="ABAP" VERSION="1" TPUTYPE="0" IMPLICIT="X"/>
+  <forwardDeclaration>ABAP</forwardDeclaration>
+  <typeClasDef CLSNAME="ZCL_CA_FILE_UTILITIES" TYPEGROUP="CL_ABAP_CHAR_UTILITIES" VERSION="1" TPUTYPE="1" IMPLICIT="X"/>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="ADD_FILE_TO_ZIP" VERSION="1" LANGU="E" DESCRIPT="Add the file to the ZIP" EXPOSURE="1" STATE="1" EDITORDER="9 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="ADD_FILE_TO_ZIP" SCONAME="XSTRING_DATA" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="XSTRING"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="ADD_FILE_TO_ZIP" SCONAME="FILE_NAME_IN_ZIP" VERSION="1" LANGU="E" DESCRIPT="File Name on the Application Server" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ZBCSFILES-FILE_NAME_IN_ZIP"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="ADD_FILE_TO_ZIP" SCONAME="ZIPPER" VERSION="1" LANGU="E" DESCRIPT="Zip Utility" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="0" TYPTYPE="3" TYPE="CL_ABAP_ZIP"/>
+   <source>METHOD add_file_to_zip.
+
+  DATA: vl_file_name TYPE string.
+
+  vl_file_name = file_name_in_zip.
+
+* Add the file into the ZIP
+  CALL METHOD zipper-&gt;add
+    EXPORTING
+      name    = vl_file_name
+      content = xstring_data.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CALCULATE_FILE_SIZE" VERSION="1" LANGU="E" DESCRIPT="Calculate File Size" EXPOSURE="2" STATE="1" EDITORDER="1 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CALCULATE_FILE_SIZE" SCONAME="TYPE" VERSION="1" LANGU="E" DESCRIPT="File Type (ASCII, Binary)" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="CHAR10" PARVALUE="&apos;ASC&apos;" PAROPTIONL="X" PARPREFERD="X"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CALCULATE_FILE_SIZE" SCONAME="DATA" VERSION="1" LANGU="E" DESCRIPT="File Content" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY TABLE"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CALCULATE_FILE_SIZE" SCONAME="SIZE" VERSION="1" LANGU="E" DESCRIPT="File Size in Mb" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="3" PARPASSTYP="0" TYPTYPE="1" TYPE="I"/>
+   <exception CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CALCULATE_FILE_SIZE" SCONAME="FORMAT_NOT_SUPPORTED" VERSION="1" LANGU="E" DESCRIPT="Format not supported" MTDTYPE="0" EDITORDER="1 "/>
+   <source>METHOD calculate_file_size.
+
+  FIELD-SYMBOLS: &lt;fsl_data&gt; TYPE ANY.
+
+  DATA: vl_size TYPE i,
+        vl_data TYPE string.
+
+  CASE type.
+    WHEN &apos;ASC&apos;.
+
+      LOOP AT data ASSIGNING &lt;fsl_data&gt;.
+        DESCRIBE FIELD &lt;fsl_data&gt; LENGTH vl_size IN CHARACTER MODE.
+        size = size  + vl_size.
+      ENDLOOP.
+
+    WHEN &apos;BIN&apos;.
+
+      LOOP AT data INTO vl_data.
+        ASSIGN vl_data TO &lt;fsl_data&gt;.
+        vl_size = STRLEN( &lt;fsl_data&gt; ).
+        size = size  + vl_size.
+      ENDLOOP.
+
+    WHEN OTHERS.
+
+      MESSAGE e873(td) WITH type RAISING format_not_supported.
+*     Format &amp; not supported
+
+  ENDCASE.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CATCH_TOO_LONG" VERSION="1" LANGU="E" DESCRIPT="Recursive to reduce the length at the last field" EXPOSURE="1" STATE="1" EDITORDER="10 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CATCH_TOO_LONG" SCONAME="INPUT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CATCH_TOO_LONG" SCONAME="AGGREGATE" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="I"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CATCH_TOO_LONG" SCONAME="LENGTH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="I"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CATCH_TOO_LONG" SCONAME="FIELD" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY"/>
+   <source>METHOD catch_too_long.
+
+  TRY.
+
+*     Try with 1 less length
+      length  = length - 1.
+      field = input+aggregate(length).
+
+    CATCH cx_sy_range_out_of_bounds.
+
+*     Try again
+      CALL METHOD zcl_ca_file_utilities=&gt;catch_too_long
+        EXPORTING
+          input     = input
+          aggregate = aggregate
+        CHANGING
+          length    = length
+          field     = field.
+
+  ENDTRY.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CONVERT_BIN_TO_XSTRING" VERSION="1" LANGU="E" DESCRIPT="Convert the data to xstring" EXPOSURE="1" STATE="1" EDITORDER="11 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CONVERT_BIN_TO_XSTRING" SCONAME="LENGTH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="I"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CONVERT_BIN_TO_XSTRING" SCONAME="XSTRING_DATA" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="XSTRING"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CONVERT_BIN_TO_XSTRING" SCONAME="FILE_DATA" VERSION="1" LANGU="E" DESCRIPT="File Content" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SWFTLISTI1"/>
+   <source>METHOD convert_bin_to_xstring.
+
+  CLEAR xstring_data.
+
+  CALL FUNCTION &apos;SCMS_BINARY_TO_XSTRING&apos;
+    EXPORTING
+      input_length = length
+    IMPORTING
+      buffer       = xstring_data
+    TABLES
+      binary_tab   = file_data.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CREATE_ZIP_FILE_APP_SVR" VERSION="1" LANGU="E" DESCRIPT="Create a ZIP file in the application server" EXPOSURE="2" STATE="1" EDITORDER="2 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CREATE_ZIP_FILE_APP_SVR" SCONAME="ZIP_NAME" VERSION="1" LANGU="E" DESCRIPT="File Name on the Application Server" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ESEFTAPPL"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CREATE_ZIP_FILE_APP_SVR" SCONAME="FILES" VERSION="1" LANGU="E" DESCRIPT="File List" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ZBCTPFILES"/>
+   <exception CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="CREATE_ZIP_FILE_APP_SVR" SCONAME="FILES_IS_INITIAL" VERSION="1" LANGU="E" DESCRIPT="FILES table empty" MTDTYPE="0" EDITORDER="1 "/>
+   <source>METHOD create_zip_file_app_svr.
+
+  DATA: ol_zipper       TYPE REF TO cl_abap_zip.
+
+  DATA: tl_file_data    TYPE STANDARD TABLE OF solisti1,
+        tl_file_tab_zip TYPE STANDARD TABLE OF solisti1.
+
+  DATA: wl_file         TYPE zbcsfiles.
+
+  DATA: vl_bin_filesize TYPE i,
+        vl_xstring_data TYPE xstring,
+        vl_zip          TYPE xstring.
+
+***
+* 1.- Create ZIP file
+***
+  CREATE OBJECT ol_zipper.
+
+***
+* 2.- Each file to compress
+***
+  LOOP AT files INTO wl_file.
+
+***
+* 3.- Read the file
+***
+    CALL METHOD zcl_ca_file_utilities=&gt;read_file
+      EXPORTING
+        file      = wl_file
+      IMPORTING
+        length    = vl_bin_filesize
+        file_data = tl_file_data.
+
+
+***
+* 4.- Convert to XString
+***
+    CALL METHOD zcl_ca_file_utilities=&gt;convert_bin_to_xstring
+      EXPORTING
+        length       = vl_bin_filesize
+      CHANGING
+        xstring_data = vl_xstring_data
+        file_data    = tl_file_data.
+
+****
+** 5.- Add the file in the ZIP
+****
+
+    CALL METHOD zcl_ca_file_utilities=&gt;add_file_to_zip
+      EXPORTING
+        xstring_data     = vl_xstring_data
+        file_name_in_zip = wl_file-file_name_in_zip
+      CHANGING
+        zipper           = ol_zipper.
+
+    AT LAST.
+
+***
+* 6.- Save the ZIP file
+***
+
+      CALL METHOD zcl_ca_file_utilities=&gt;save_zip
+        EXPORTING
+          zipper       = ol_zipper
+        IMPORTING
+          zip          = vl_zip
+        CHANGING
+          file_tab_zip = tl_file_tab_zip.
+
+***
+* 7.- Download ZIP
+***
+
+      CALL METHOD zcl_ca_file_utilities=&gt;download_zip_file
+        EXPORTING
+          filename     = zip_name
+        IMPORTING
+          file_tab_zip = tl_file_tab_zip.
+
+    ENDAT.
+
+  ENDLOOP.
+
+  IF sy-subrc NE 0.
+    MESSAGE e021(earc) RAISING files_is_initial.
+*   No archive files exist that can be opened
+  ENDIF.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="DOWNLOAD_ZIP_FILE" VERSION="1" LANGU="E" DESCRIPT="Save the ZIP file in the app server" EXPOSURE="1" STATE="1" EDITORDER="12 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="DOWNLOAD_ZIP_FILE" SCONAME="FILENAME" VERSION="1" LANGU="E" DESCRIPT="File Name on the Application Server" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ESEFTAPPL"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="DOWNLOAD_ZIP_FILE" SCONAME="FILE_TAB_ZIP" VERSION="1" LANGU="E" DESCRIPT="Binary ZIP File" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SWFTLISTI1"/>
+   <source>METHOD download_zip_file.
+
+  DATA: wl_file_tab_zip TYPE solisti1.
+
+  OPEN DATASET filename FOR OUTPUT IN BINARY MODE.
+
+  IF sy-subrc EQ 0.
+    LOOP AT file_tab_zip INTO wl_file_tab_zip.
+      TRANSFER wl_file_tab_zip TO filename.
+    ENDLOOP.
+  ELSE.
+    MESSAGE i012(ba) WITH filename.
+*   Cannot open archive file &amp;
+  ENDIF.
+
+  CLOSE DATASET filename.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FILESOURCE_FROM_PATH" VERSION="1" LANGU="E" DESCRIPT="Return the real path (UNC) and the resource type" EXPOSURE="2" STATE="1" EDITORDER="3 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FILESOURCE_FROM_PATH" SCONAME="PATH" VERSION="1" LANGU="E" DESCRIPT="Logical Path" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FILESOURCE_FROM_PATH" SCONAME="DRIVE" VERSION="1" LANGU="E" DESCRIPT="Drive Type (FIXED, REMOTE)" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FILESOURCE_FROM_PATH" SCONAME="DRIVE_UNIT" VERSION="1" LANGU="E" DESCRIPT="Letter Drive (Windows ex: Q)" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FILESOURCE_FROM_PATH" SCONAME="REAL_PATH" VERSION="1" LANGU="E" DESCRIPT="Real Path  (UNC or Physical)" CMPTYPE="1" MTDTYPE="0" EDITORDER="4 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRING"/>
+   <exception CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FILESOURCE_FROM_PATH" SCONAME="PATH_ERROR" VERSION="1" LANGU="E" DESCRIPT="Wrong path format" MTDTYPE="0" EDITORDER="1 "/>
+   <source>METHOD filesource_from_path.
+
+  DATA: t_string      TYPE STANDARD TABLE OF string.
+
+  DATA: vl_type       TYPE string,
+        vl_reg_value  TYPE string,
+        vl_key        TYPE string,
+        vl_drive      TYPE string.
+
+  IF path IS INITIAL OR STRLEN( path ) LE 1.
+    RAISE path_error.
+  ENDIF.
+
+  real_path = path.
+  vl_drive = path(2).
+
+* Get the source drive type
+  CALL METHOD cl_gui_frontend_services=&gt;get_drive_type
+    EXPORTING
+      drive                = vl_drive
+    CHANGING
+      drive_type           = vl_type
+    EXCEPTIONS
+      cntl_error           = 1
+      bad_parameter        = 2
+      error_no_gui         = 3
+      not_supported_by_gui = 4
+      OTHERS               = 5.
+  IF sy-subrc NE 0.
+    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+               WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  ENDIF.
+
+  CALL METHOD cl_gui_cfw=&gt;flush
+    EXCEPTIONS
+      cntl_system_error = 1
+      cntl_error        = 2
+      OTHERS            = 3.
+  IF sy-subrc NE 0.
+    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+               WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  ENDIF.
+
+  drive = vl_type.
+
+  CHECK path(2) NE &apos;\\&apos;.
+  drive_unit = path(1).
+
+* IF is a REMOTE conection, read the windows registry to know the destination
+  CHECK vl_type EQ &apos;REMOTE&apos;.
+
+  CONCATENATE &apos;Network\&apos; vl_drive(1) INTO vl_key.
+
+  drive_unit = vl_drive(1).
+
+  CALL METHOD cl_gui_frontend_services=&gt;registry_get_value
+    EXPORTING
+      root                 = cl_gui_frontend_services=&gt;hkey_current_user
+      key                  = vl_key
+      value                = &apos;RemotePath&apos;
+    IMPORTING
+      reg_value            = vl_reg_value
+    EXCEPTIONS
+      get_regvalue_failed  = 1
+      cntl_error           = 2
+      error_no_gui         = 3
+      not_supported_by_gui = 4
+      OTHERS               = 5.
+
+  IF sy-subrc NE 0.
+    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+               WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  ENDIF.
+
+  IF STRLEN( real_path ) GE 2.
+    real_path = real_path+2.
+  ENDIF.
+
+  IF STRLEN( real_path ) GE 1 AND real_path(1) EQ &apos;\&apos;.
+    real_path = real_path+1.
+  ENDIF.
+
+  CONCATENATE vl_reg_value real_path INTO real_path SEPARATED BY &apos;\&apos;.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FIXEDTAB_TO_STANDARDTAB" VERSION="1" LANGU="E" DESCRIPT="Convert a Fixed length table to a Standard Table" EXPOSURE="2" STATE="1" EDITORDER="4 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FIXEDTAB_TO_STANDARDTAB" SCONAME="INPUT" VERSION="1" LANGU="E" DESCRIPT="Table with Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRINGTAB"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FIXEDTAB_TO_STANDARDTAB" SCONAME="LENGTHS" VERSION="1" LANGU="E" DESCRIPT="Table with lengths" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="INT4_TABLE"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FIXEDTAB_TO_STANDARDTAB" SCONAME="OUTPUT" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STANDARD TABLE"/>
+   <exception CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FIXEDTAB_TO_STANDARDTAB" SCONAME="ASSIGN_ERROR" VERSION="1" LANGU="E" DESCRIPT="Error when assign a value" MTDTYPE="0" EDITORDER="1 "/>
+   <source>METHOD fixedtab_to_standardtab.
+
+  DATA: ol_t_reference TYPE REF TO data,
+        ol_w_reference TYPE REF TO data.
+
+  DATA: vl_input    TYPE string,
+        vl_len      TYPE int4,
+        vl_quan_len TYPE i,
+        vl_sum      TYPE int4.
+
+  FIELD-SYMBOLS: &lt;fsl_t_output&gt; TYPE ANY TABLE,
+                 &lt;fsl_w_output&gt; TYPE ANY,
+                 &lt;fsl_v_field&gt;  TYPE ANY.
+
+***
+* 1.- Create the data object like the output
+***
+  CREATE DATA ol_t_reference LIKE output.
+
+  CHECK ol_t_reference IS BOUND.
+  ASSIGN ol_t_reference-&gt;* TO &lt;fsl_t_output&gt;.
+  IF sy-subrc NE 0.
+    MESSAGE e011(saplwspo) WITH &apos;OUTPUT&apos; &apos;&apos;.
+  ENDIF.
+
+  CREATE DATA ol_w_reference LIKE LINE OF &lt;fsl_t_output&gt;.
+
+***
+* 2.- How many splits
+***
+  vl_quan_len = LINES( lengths ).
+
+***
+* 3.- Read the input data
+***
+  LOOP AT input INTO vl_input.
+
+***
+* 3.1- Create a work area like the output table
+***
+    ASSIGN ol_w_reference-&gt;* TO &lt;fsl_w_output&gt;.
+
+    DO vl_quan_len TIMES.
+
+***
+* 3.2- Assign the fields
+***
+      ASSIGN COMPONENT sy-index OF STRUCTURE &lt;fsl_w_output&gt; TO &lt;fsl_v_field&gt;.
+      IF sy-subrc &lt;&gt; 0.
+        MESSAGE e036(afwbm_main) RAISING assign_error.
+*       Internal error in the tool for assigning characteristic values
+      ENDIF.
+
+      READ TABLE lengths
+      INTO vl_len
+      INDEX sy-index.
+
+      IF vl_sum IS INITIAL.
+        &lt;fsl_v_field&gt; = vl_input(vl_len).
+        vl_sum = vl_len.
+      ELSE.
+        &lt;fsl_v_field&gt; = vl_input+vl_sum(vl_len).
+        vl_sum = vl_sum + vl_len.
+      ENDIF.
+
+    ENDDO.
+
+***
+* 4.- Fill the output reference
+***
+    CHECK ol_w_reference IS BOUND.
+    ASSIGN ol_w_reference-&gt;* TO &lt;fsl_w_output&gt;.
+    IF sy-subrc &lt;&gt; 0.
+      MESSAGE e011(saplwspo) WITH &apos;&lt;FSL_W_OUTPUT&gt;&apos; &apos;&apos;.
+    ENDIF.
+
+    INSERT &lt;fsl_w_output&gt; INTO TABLE &lt;fsl_t_output&gt;.
+
+    CLEAR vl_sum.
+
+  ENDLOOP.
+
+***
+* 5.- Fill the output table
+***
+  output = &lt;fsl_t_output&gt;.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FIXEDTAB_TO_STANDARDTAB_2" VERSION="1" LANGU="E" DESCRIPT="Convert a Fixed length table to a Standard Table without len" EXPOSURE="2" STATE="1" EDITORDER="5 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FIXEDTAB_TO_STANDARDTAB_2" SCONAME="INPUT" VERSION="1" LANGU="E" DESCRIPT="Table with Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRINGTAB"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="FIXEDTAB_TO_STANDARDTAB_2" SCONAME="OUTPUT" VERSION="1" LANGU="E" DESCRIPT="Output table" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STANDARD TABLE"/>
+   <source>METHOD fixedtab_to_standardtab_2.
+
+  DATA: ol_t_reference TYPE REF TO data,
+        ol_w_reference TYPE REF TO data.
+
+  DATA: vl_input   TYPE string,
+        vl_length  TYPE int4,
+        vl_cant_long TYPE i,
+        vl_aggregate TYPE int4.
+
+  FIELD-SYMBOLS: &lt;fsl_t_output&gt; TYPE ANY TABLE,
+                 &lt;fsl_w_output&gt; TYPE ANY,
+                 &lt;fsl_v_field&gt;  TYPE ANY.
+
+***
+* 1.- Create a data object like the output table structure
+***
+  CREATE DATA ol_t_reference LIKE output.
+
+  CHECK ol_t_reference IS BOUND.
+  ASSIGN ol_t_reference-&gt;* TO &lt;fsl_t_output&gt;.
+  IF sy-subrc &lt;&gt; 0.
+    MESSAGE e011(saplwspo) WITH &apos;OUTPUT&apos; &apos;&apos;.
+  ENDIF.
+
+  CREATE DATA ol_w_reference LIKE LINE OF &lt;fsl_t_output&gt;.
+
+***
+* 2.- Loop the input table
+***
+  LOOP AT input INTO vl_input.
+
+***
+* 2.1- Create a structure.
+***
+    ASSIGN ol_w_reference-&gt;* TO &lt;fsl_w_output&gt;.
+
+    DO.
+
+***
+* 2.2- Asigno los componentes
+***
+      ASSIGN COMPONENT sy-index OF STRUCTURE &lt;fsl_w_output&gt; TO &lt;fsl_v_field&gt;.
+      IF sy-subrc &lt;&gt; 0.
+        EXIT.
+      ENDIF.
+
+***
+* 2.3- Get the destination length
+***
+      DESCRIBE FIELD &lt;fsl_v_field&gt; LENGTH vl_length IN BYTE MODE.
+
+      IF vl_aggregate IS INITIAL.
+        &lt;fsl_v_field&gt; = vl_input(vl_length).
+        vl_aggregate = vl_length.
+      ELSE.
+
+        TRY.
+            &lt;fsl_v_field&gt; = vl_input+vl_aggregate(vl_length).
+          CATCH cx_sy_range_out_of_bounds.
+***
+*      This exception raise when the last field length is less long
+* 2.4- at the field in the destination structure.
+*      With a recursive method to reduce at 1 the length by each try.
+            CALL METHOD zcl_ca_file_utilities=&gt;catch_too_long
+              EXPORTING
+                input     = vl_input
+                aggregate = vl_aggregate
+              CHANGING
+                length    = vl_length
+                field     = &lt;fsl_v_field&gt;.
+
+        ENDTRY.
+
+        vl_aggregate = vl_aggregate + vl_length.
+      ENDIF.
+
+    ENDDO.
+
+***
+* 3.- Move the data
+***
+    CHECK ol_w_reference IS BOUND.
+    ASSIGN ol_w_reference-&gt;* TO &lt;fsl_w_output&gt;.
+    IF sy-subrc &lt;&gt; 0.
+      MESSAGE e011(saplwspo) WITH &apos;&lt;FSL_W_OUTPUT&gt;&apos; &apos;&apos;.
+    ENDIF.
+
+    INSERT &lt;fsl_w_output&gt; INTO TABLE &lt;fsl_t_output&gt;.
+
+    CLEAR vl_aggregate.
+
+  ENDLOOP.
+
+***
+* 4.- Fill the output table
+***
+  output = &lt;fsl_t_output&gt;.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="MERGE_OTF_INTO_1_PDF" VERSION="1" LANGU="E" DESCRIPT="Merge multiple OTF into one PDF" EXPOSURE="2" STATE="1" EDITORDER="6 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="MERGE_OTF_INTO_1_PDF" SCONAME="OTF_TABS" VERSION="1" LANGU="E" DESCRIPT="OTF Table with copies" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="TY_T_OTF"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="MERGE_OTF_INTO_1_PDF" SCONAME="PDF" VERSION="1" LANGU="E" DESCRIPT="PDF File" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="XSTRING"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="MERGE_OTF_INTO_1_PDF" SCONAME="FILESIZE" VERSION="1" LANGU="E" DESCRIPT="Size of Document Content" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SO_OBJ_LEN"/>
+   <source>METHOD merge_otf_into_1_pdf.
+
+  DATA: tl_final_otf TYPE tsfotf,
+        tl_lines     TYPE STANDARD TABLE OF tline.
+
+  DATA: wl_otf_tabs  TYPE LINE OF ty_t_otf.
+
+  DATA: vl_tabix     TYPE sy-tabix.
+
+  LOOP AT otf_tabs INTO wl_otf_tabs.
+
+    IF wl_otf_tabs-copies EQ 0.
+      wl_otf_tabs-copies = 1.
+    ENDIF.
+
+    DO wl_otf_tabs-copies TIMES.
+
+      IF tl_final_otf IS INITIAL.
+        tl_final_otf = wl_otf_tabs-otf.
+        CONTINUE.
+      ENDIF.
+
+*     Find the end of page in the OTF
+      LOOP AT tl_final_otf TRANSPORTING NO FIELDS WHERE tdprintcom = &apos;EP&apos;.
+      ENDLOOP.
+      vl_tabix = sy-tabix + 1.
+
+*     Remove the begin and end marks
+      DELETE wl_otf_tabs-otf WHERE tdprintcom = &apos;//&apos;.
+
+*     Add the partial OTF to the final
+      INSERT LINES OF wl_otf_tabs-otf INTO tl_final_otf INDEX vl_tabix.
+
+    ENDDO.
+
+  ENDLOOP.
+
+* Convert OTF to PDF
+  CALL FUNCTION &apos;CONVERT_OTF&apos;
+    EXPORTING
+      format                = &apos;PDF&apos;
+      max_linewidth         = 132
+    IMPORTING
+      bin_filesize          = filesize
+      bin_file              = pdf
+    TABLES
+      otf                   = tl_final_otf
+      lines                 = tl_lines
+    EXCEPTIONS
+      err_max_linewidth     = 1
+      err_format            = 2
+      err_conv_not_possible = 3
+      err_bad_otf           = 4
+      OTHERS                = 5.
+
+  IF sy-subrc NE 0.
+    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+  ENDIF.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="READ_FILE" VERSION="1" LANGU="E" DESCRIPT="Read the file content" EXPOSURE="1" STATE="1" EDITORDER="13 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="READ_FILE" SCONAME="FILE" VERSION="1" LANGU="E" DESCRIPT="File List Structure" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ZBCSFILES"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="READ_FILE" SCONAME="LENGTH" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="I"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="READ_FILE" SCONAME="FILE_DATA" VERSION="1" LANGU="E" DESCRIPT="File Content" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="SWFTLISTI1"/>
+   <source>METHOD read_file.
+
+  DATA: wl_file_data TYPE solisti1,
+        vl_length    TYPE i.
+
+  CLEAR file_data.
+  CLEAR length.
+
+  OPEN DATASET file-file_name FOR INPUT IN BINARY MODE.
+  IF sy-subrc EQ 0.
+    DO.
+      READ DATASET file-file_name INTO wl_file_data LENGTH vl_length.
+      IF sy-subrc NE 0.
+        IF vl_length GT 0.
+          APPEND wl_file_data TO file_data.
+          ADD vl_length TO length.
+        ENDIF.
+        EXIT.
+      ELSE.
+        APPEND wl_file_data TO file_data.
+        ADD vl_length TO length.
+      ENDIF.
+    ENDDO.
+  ELSE.
+    MESSAGE i012(ba) WITH file-file_name.
+*   Cannot open archive file &amp;
+  ENDIF.
+
+  CLOSE DATASET file-file_name.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="SAVE_ZIP" VERSION="1" LANGU="E" DESCRIPT="Save the ZIP File" EXPOSURE="1" STATE="1" EDITORDER="14 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="SAVE_ZIP" SCONAME="ZIPPER" VERSION="1" LANGU="E" DESCRIPT="Zip Utility" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="3" TYPE="CL_ABAP_ZIP"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="SAVE_ZIP" SCONAME="ZIP" VERSION="1" LANGU="E" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="XSTRING"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="SAVE_ZIP" SCONAME="FILE_TAB_ZIP" VERSION="1" LANGU="E" DESCRIPT="Binary ZIP File" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="2" PARPASSTYP="1" TYPTYPE="1" TYPE="SWFTLISTI1"/>
+   <source>METHOD save_zip.
+
+  DATA: vl_bin_filesize TYPE i.
+
+* Save the ZIP
+  CALL METHOD zipper-&gt;save
+    RECEIVING
+      zip = zip.
+
+* Create the binary file
+  CALL FUNCTION &apos;SCMS_XSTRING_TO_BINARY&apos;
+    EXPORTING
+      buffer        = zip
+    IMPORTING
+      output_length = vl_bin_filesize
+    TABLES
+      binary_tab    = file_tab_zip.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="STANDARDTAB_TO_STRINGTAB" VERSION="1" LANGU="E" DESCRIPT="Convert a Standard Table to a String table" EXPOSURE="2" STATE="1" EDITORDER="7 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="STANDARDTAB_TO_STRINGTAB" SCONAME="INPUT" VERSION="1" LANGU="E" DESCRIPT="Type Standard Table" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ANY TABLE"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="STANDARDTAB_TO_STRINGTAB" SCONAME="SPLITTER" VERSION="1" LANGU="E" DESCRIPT="Split string table by..." CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_CHAR1" PARVALUE="CL_ABAP_CHAR_UTILITIES=&gt;HORIZONTAL_TAB" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="STANDARDTAB_TO_STRINGTAB" SCONAME="OUTPUT" VERSION="1" LANGU="E" DESCRIPT="Type Stringtab" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="1" TYPTYPE="1" TYPE="STRINGTAB"/>
+   <source>METHOD standardtab_to_stringtab.
+
+  DATA: wl_line         TYPE string,
+        vl_splitter     TYPE abap_char1,
+        vl_field        TYPE i VALUE 0,
+        vl_type         TYPE c LENGTH 1,
+        vl_charlike_aux TYPE c LENGTH 12.
+
+
+  FIELD-SYMBOLS: &lt;fsl_input&gt; TYPE ANY,
+                 &lt;fsl_field&gt; TYPE ANY.
+
+  LOOP AT input ASSIGNING &lt;fsl_input&gt;.
+
+    DO.
+
+      vl_field = vl_field + 1.
+      ASSIGN COMPONENT vl_field OF STRUCTURE &lt;fsl_input&gt; TO &lt;fsl_field&gt;.
+      IF sy-subrc NE 0.
+        APPEND wl_line TO output.
+        EXIT.
+      ENDIF.
+
+      IF wl_line IS INITIAL.
+        wl_line = &lt;fsl_field&gt;.
+      ELSE.
+
+        DESCRIBE FIELD &lt;fsl_field&gt; TYPE vl_type.
+
+        IF vl_type EQ &apos;I&apos; OR vl_type EQ &apos;P&apos;.
+
+          vl_charlike_aux = &lt;fsl_field&gt;.
+          CONCATENATE wl_line
+                      vl_splitter
+                      vl_charlike_aux
+          INTO wl_line.
+
+        ELSE.
+
+          CONCATENATE wl_line
+                      vl_splitter
+                      &lt;fsl_field&gt;
+                 INTO wl_line.
+
+        ENDIF.
+
+      ENDIF.
+
+    ENDDO.
+
+    CLEAR: wl_line,
+           vl_field.
+
+  ENDLOOP.
+
+ENDMETHOD.</source>
+  </method>
+  <method CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="STRINGTAB_TO_STANDARDTAB" VERSION="1" LANGU="E" DESCRIPT="Convert a String Table to a Standard Table" EXPOSURE="2" STATE="1" EDITORDER="8 " DISPID="0 " MTDTYPE="0" MTDDECLTYP="1" BCMTDCAT="00" BCMTDSYN="0">
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="STRINGTAB_TO_STANDARDTAB" SCONAME="INPUT" VERSION="1" LANGU="E" DESCRIPT="Table with Strings" CMPTYPE="1" MTDTYPE="0" EDITORDER="1 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="STRINGTAB"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="STRINGTAB_TO_STANDARDTAB" SCONAME="SPLIT" VERSION="1" LANGU="E" DESCRIPT="Split by" CMPTYPE="1" MTDTYPE="0" EDITORDER="2 " DISPID="0 " PARDECLTYP="0" PARPASSTYP="1" TYPTYPE="1" TYPE="ABAP_CHAR1" PARVALUE="CL_ABAP_CHAR_UTILITIES=&gt;HORIZONTAL_TAB" PAROPTIONL="X"/>
+   <parameter CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="STRINGTAB_TO_STANDARDTAB" SCONAME="OUTPUT" VERSION="1" LANGU="E" DESCRIPT="Table in standard structure" CMPTYPE="1" MTDTYPE="0" EDITORDER="3 " DISPID="0 " PARDECLTYP="1" PARPASSTYP="0" TYPTYPE="1" TYPE="STANDARD TABLE"/>
+   <exception CLSNAME="ZCL_CA_FILE_UTILITIES" CMPNAME="STRINGTAB_TO_STANDARDTAB" SCONAME="ASSIGN_ERROR" VERSION="1" LANGU="E" DESCRIPT="Error when assign a value" MTDTYPE="0" EDITORDER="1 "/>
+   <source>METHOD stringtab_to_standardtab.
+
+  DATA: ol_t_reference TYPE REF TO data,
+        ol_w_reference TYPE REF TO data.
+
+  DATA: tl_split       TYPE stringtab.
+
+  DATA: vl_input       TYPE string,
+        vl_split       TYPE string.
+
+  FIELD-SYMBOLS: &lt;fsl_t_output&gt; TYPE ANY TABLE,
+                 &lt;fsl_w_output&gt; TYPE ANY,
+                 &lt;fsl_v_field&gt;  TYPE ANY.
+
+***
+* 1.- Create a data object like the output
+***
+  CREATE DATA ol_t_reference LIKE output.
+
+  CHECK ol_t_reference IS BOUND.
+  ASSIGN ol_t_reference-&gt;* TO &lt;fsl_t_output&gt;.
+  IF sy-subrc &lt;&gt; 0.
+    MESSAGE e011(saplwspo) WITH &apos;OUTPUT&apos; &apos;&apos;.
+  ENDIF.
+
+  CREATE DATA ol_w_reference LIKE LINE OF &lt;fsl_t_output&gt;.
+
+***
+* 2.- Loop the input data
+***
+  LOOP AT input INTO vl_input.
+
+***
+* 2.1- Split the string line
+***
+    SPLIT vl_input AT split INTO TABLE tl_split.
+
+***
+* 2.2- Create a structure like line of output table.
+***
+    ASSIGN ol_w_reference-&gt;* TO &lt;fsl_w_output&gt;.
+
+    LOOP AT tl_split INTO vl_split.
+
+      ASSIGN COMPONENT sy-tabix
+      OF STRUCTURE &lt;fsl_w_output&gt;
+      TO &lt;fsl_v_field&gt;.
+
+      IF &lt;fsl_v_field&gt; IS NOT ASSIGNED.
+        MESSAGE e036(afwbm_main) RAISING assign_error.
+*       Internal error in the tool for assigning characteristic values
+      ENDIF.
+
+      &lt;fsl_v_field&gt; = vl_split.
+
+    ENDLOOP.
+
+    INSERT &lt;fsl_w_output&gt; INTO TABLE &lt;fsl_t_output&gt;.
+
+  ENDLOOP.
+
+***
+* 3.- Fill output table
+***
+  output = &lt;fsl_t_output&gt;.
+
+ENDMETHOD.</source>
+  </method>
+ </CLAS>
+ <TABL TABNAME="ZBCSFILES" DDLANGUAGE="E" TABCLASS="INTTAB" DATMIN="0000000000" DATMAX="0000000000" DATAVG="0000000000" DDTEXT="File List Structure" AUTHCLASS="00" PROZPUFF="000" EXCLASS="1">
+  <dd09l AS4VERS="0000" SCHFELDANZ="000"/>
+  <dd03p TABNAME="ZBCSFILES" FIELDNAME="FILE_NAME" DDLANGUAGE="E" POSITION="0001" ROLLNAME="ESEFTAPPL" ADMINFIELD="0" INTTYPE="C" INTLEN="000200" DOMNAME="PATHEXTERN" ROUTPUTLEN="000000" HEADLEN="29" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DTELMASTER="D" DATATYPE="CHAR" LENG="000200" OUTPUTLEN="000200" DECIMALS="000000" LOWERCASE="X" MASK="  CHARE" MASKLEN="0000" DDTEXT="File Name on the Application Server" REPTEXT="File on application server" SCRTEXT_S="File appl." SCRTEXT_M="File appl.serv." SCRTEXT_L="File appl. server" DOMNAME3L="PATHEXTERN" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000"/>
+  <dd03p TABNAME="ZBCSFILES" FIELDNAME="FILE_NAME_IN_ZIP" DDLANGUAGE="E" POSITION="0002" ROLLNAME="ESEFTAPPL" ADMINFIELD="0" INTTYPE="C" INTLEN="000200" DOMNAME="PATHEXTERN" ROUTPUTLEN="000000" HEADLEN="29" SCRLEN1="10" SCRLEN2="15" SCRLEN3="20" DTELMASTER="D" DATATYPE="CHAR" LENG="000200" OUTPUTLEN="000200" DECIMALS="000000" LOWERCASE="X" MASK="  CHARE" MASKLEN="0000" DDTEXT="File Name on the Application Server" REPTEXT="File on application server" SCRTEXT_S="File appl." SCRTEXT_M="File appl.serv." SCRTEXT_L="File appl. server" DOMNAME3L="PATHEXTERN" DEPTH="00" COMPTYPE="E" EXCLASS="0" DBPOSITION="0000"/>
+ </TABL>
+ <TTYP TYPENAME="ZBCTPFILES" DDLANGUAGE="E" ROWTYPE="ZBCSFILES" ROWKIND="S" DATATYPE="STRU" LENG="000000" DECIMALS="000000" ACCESSMODE="T" KEYDEF="D" KEYKIND="N" KEYFDCOUNT="0000" DDTEXT="File List" TYPELEN="000400" CTLENG="000000" CTDECIMALS="000000" OCCURS="00000"/>
+</nugget>
