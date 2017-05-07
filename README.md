@@ -82,6 +82,8 @@ _Convert a Standard Table to a String table_
 #### INPUT 
 * INPUT: A standard table (Example: FIELD1: AA ; FIELD2: BBBB ; FIELD3: CCCCC)
 * SPLITTER: Split by... Default: Horizontal Tab
+* ENCLOSED: Enclose character. (Example: '"' => "DATA1";"DATA2";"DATAN")
+* DECIMALS_FLOAT: Number of decimals to convert Float data
 
 #### OUTPUT
 * OUTPUT: The string table
@@ -96,3 +98,31 @@ _Convert a String Table to a Standard Table_
 
 #### OUTPUT
 * OUTPUT: A standard table (Example: FIELD1: AA ; FIELD2: BBBB ; FIELD3: CCCCC)
+
+### ARCHIVFILE_CLIENT_TO_SERVER
+
+_Copy or Move a file from the presentation sever to the application server_
+
+#### INPUT
+* SOURCE: Source full path
+* TARGET: Full path destination
+* MOVE: Move the file ('X' => True; Default => ' ')
+
+### ARCHIVFILE_SERVER_TO_SERVER
+
+_Copy or Move a file into de application server_
+
+#### INPUT
+* SOURCE: Source full path
+* TARGET: Full path destination
+* MOVE: Move the file ('X' => True; Default => ' ')
+
+### GET_FILE_SEPARATOR
+
+_Get the OS file separator_
+
+#### INPUT
+* BATCH: Get the Application Server file separator. Default => ' '
+
+#### OUTPUT
+* FILE_SEPARATOR: OS File Separator. Example: Windows NT => \
