@@ -95,4 +95,4 @@ METHOD create_zip_file_app_svr.
 ENDMETHOD.
 
 ----------------------------------------------------------------------------------
-Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2016. Sap Release 700
+Extracted by Mass Download version 1.4.3 - E.G.Mellodew. 1998-2017. Sap Release 731

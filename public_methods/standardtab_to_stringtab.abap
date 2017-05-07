@@ -6,15 +6,19 @@ Instantiation: Public
 
 METHOD standardtab_to_stringtab.
 
+  DATA: ol_data_float   TYPE REF TO data.
+
   DATA: wl_line         TYPE string,
-        vl_splitter     TYPE abap_char1,
         vl_field        TYPE i VALUE 0,
         vl_type         TYPE c LENGTH 1,
         vl_charlike_aux TYPE c LENGTH 12.
 
+  FIELD-SYMBOLS: <fsl_input>  TYPE any,
+                 <fsl_field>  TYPE any,
+                 <fsl_packed> TYPE any.
 
-  FIELD-SYMBOLS: <fsl_input> TYPE ANY,
-                 <fsl_field> TYPE ANY.
+  CREATE DATA ol_data_float TYPE p DECIMALS decimals_float.
+  ASSIGN ol_data_float->* TO <fsl_packed>.
 
   LOOP AT input ASSIGNING <fsl_input>.
 
@@ -28,24 +32,51 @@ METHOD standardtab_to_stringtab.
       ENDIF.
 
       IF wl_line IS INITIAL.
-        wl_line = <fsl_field>.
+        CONCATENATE enclosed
+                    <fsl_field>
+                    enclosed
+        INTO wl_line.
       ELSE.
 
         DESCRIBE FIELD <fsl_field> TYPE vl_type.
 
-        IF vl_type EQ 'I' OR vl_type EQ 'P'.
+        IF vl_type CA 'IPsb'.
 
           vl_charlike_aux = <fsl_field>.
+          CONDENSE vl_charlike_aux.
           CONCATENATE wl_line
-                      vl_splitter
+                      splitter
+                      enclosed
                       vl_charlike_aux
+                      enclosed
+          INTO wl_line.
+
+        ELSEIF vl_type EQ 'F'. " Float
+
+          CALL FUNCTION 'MURC_ROUND_FLOAT_TO_PACKED'
+            EXPORTING
+              if_float  = <fsl_field>
+            IMPORTING
+              ef_packed = <fsl_packed>
+            EXCEPTIONS
+              OTHERS    = 0.
+
+          vl_charlike_aux = <fsl_packed>.
+          CONDENSE vl_charlike_aux.
+          CONCATENATE wl_line
+                      splitter
+                      enclosed
+                      vl_charlike_aux
+                      enclosed
           INTO wl_line.
 
         ELSE.
 
           CONCATENATE wl_line
-                      vl_splitter
+                      splitter
+                      enclosed
                       <fsl_field>
+                      enclosed
                  INTO wl_line.
 
         ENDIF.
@@ -62,4 +93,4 @@ METHOD standardtab_to_stringtab.
 ENDMETHOD.
 
 ----------------------------------------------------------------------------------
-Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2016. Sap Release 700
+Extracted by Mass Download version 1.4.3 - E.G.Mellodew. 1998-2017. Sap Release 731
