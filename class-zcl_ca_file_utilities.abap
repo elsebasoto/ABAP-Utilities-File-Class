@@ -123,11 +123,24 @@ public section.
       CX_SY_FILE_IO
       CX_SY_FILE_OPEN_MODE
       CX_SY_FILE_CLOSE .
+  class-methods CONVERT_GENERIC_TO_STRING
+    importing
+      INPUT type ANY
+      OUTPUT_FORMAT type BOOLEAN default ''
+    returning
+      value(OUTPUT) type STRING .
 
 **************************************************************************
 *   Private section of class.                                            *
 **************************************************************************
 private section.
+
+  class-methods GET_LENGTH
+    importing
+      INPUT type ANY
+      OUTPUT_FORMAT type BOOLEAN default ''
+    returning
+      value(LENGTH) type I .
 
 **************************************************************************
 *   Protected section of class.                                          *
@@ -204,4 +217,4 @@ protected section.
 *873   Format & not supported
 
 ----------------------------------------------------------------------------------
-Extracted by Mass Download version 1.4.3 - E.G.Mellodew. 1998-2017. Sap Release 731
+Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2018. Sap Release 731
