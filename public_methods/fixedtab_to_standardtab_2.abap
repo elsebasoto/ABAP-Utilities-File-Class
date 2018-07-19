@@ -9,8 +9,10 @@ METHOD fixedtab_to_standardtab_2.
   DATA: ol_t_reference TYPE REF TO data,
         ol_w_reference TYPE REF TO data.
 
-  DATA: vl_input   TYPE string,
-        vl_length  TYPE int4,
+  DATA: vl_input     TYPE string,
+        vl_length    TYPE int4,
+        vl_decimals  TYPE int4,
+        vl_type      TYPE c LENGTH 1,
         vl_cant_long TYPE i,
         vl_aggregate TYPE int4.
 
@@ -54,7 +56,13 @@ METHOD fixedtab_to_standardtab_2.
 ***
 * 2.3- Get the destination length
 ***
-      DESCRIBE FIELD <fsl_v_field> LENGTH vl_length IN BYTE MODE.
+      DESCRIBE FIELD <fsl_v_field> TYPE vl_type LENGTH vl_length IN BYTE MODE DECIMALS vl_decimals.
+
+      CASE vl_type.
+        WHEN 'P'.
+          vl_length = vl_length + vl_decimals - 2.
+        WHEN OTHERS.
+      ENDCASE.
 
       IF vl_aggregate IS INITIAL.
         <fsl_v_field> = vl_input(vl_length).
@@ -79,6 +87,11 @@ METHOD fixedtab_to_standardtab_2.
         ENDTRY.
 
         vl_aggregate = vl_aggregate + vl_length.
+
+        CASE vl_type.
+          WHEN 'P'.
+            ADD 1 TO vl_aggregate. " Add the decimals separator
+        ENDCASE.
       ENDIF.
 
     ENDDO.
@@ -106,4 +119,4 @@ METHOD fixedtab_to_standardtab_2.
 ENDMETHOD.
 
 ----------------------------------------------------------------------------------
-Extracted by Mass Download version 1.4.3 - E.G.Mellodew. 1998-2017. Sap Release 731
+Extracted by Mass Download version 1.5.5 - E.G.Mellodew. 1998-2018. Sap Release 700

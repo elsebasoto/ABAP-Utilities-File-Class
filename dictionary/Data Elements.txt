@@ -1,0 +1,6 @@
+------------------------------------------------------------------------------------------------------------------------------------
+|  Data element|Domain    |Short Description|SFL|Short field label|MFL|Medium Field Label|LFL|Long Field Label|Hea|Heading         |
+------------------------------------------------------------------------------------------------------------------------------------
+|  ZBCDE0026   |ALK_STRING|Source File      | 10|Source           | 15|Source File       | 20|Source File     | 11|Source File     |
+|  ZBCDE0027   |ALK_STRING|Destination File | 10|Destinatio       | 16|Destination File  | 20|Destination File| 16|Destination File|
+------------------------------------------------------------------------------------------------------------------------------------
