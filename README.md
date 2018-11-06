@@ -126,3 +126,14 @@ _Get the OS file separator_
 
 #### OUTPUT
 * FILE_SEPARATOR: OS File Separator. Example: Windows NT => \
+
+### CONVERT_GENERIC_TO_STRING
+
+_Convert a generic structure to a string respecting blanks_
+
+#### INPUT
+* INPUT: Any defined structure
+* OUTPUT_FORMAT: Convert data to the output format. Example: VBELN 0000012345 => 12345
+
+#### OUTPUT
+* OUTPUT: String with the values concatenated
