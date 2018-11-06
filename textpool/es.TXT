@@ -1,57 +1,91 @@
-16.11.2016                                                  Dynamic List Display                                                          1
--------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------------------
-|Text Key       |Source Text                                                 |Translated Text                                             |
--------------------------------------------------------------------------------------------------------------------------------------------
-|CLASS     00001|File Utilities                                              |Utilidades de Archivo                                       |
-|COMPO     00002|Add the file to the ZIP                                     |Agregar el archivo al ZIP                                   |
-|COMPO     00003|Calculate File Size                                         |Calcular el tama駉 del archivo                              |
-|COMPO     00004|Recursive to reduce the length at the last field            |Recursivo para reducir la longitud por el 鷏timo campo      |
-|COMPO     00005|Convert the data to xstring                                 |Convertir datos a xstring                                   |
-|COMPO     00006|Create a ZIP file in the application server                 |Crear el archivo ZIP en el Servidor de Aplicaci髇           |
-|COMPO     00007|Save the ZIP file in the app server                         |Grabar el archivo ZIP en el Servidor de Aplicaci髇          |
-|COMPO     00008|Return the real path (UNC) and the resource type            |Devuelve el path real (UNC) y el tipo de recurso            |
-|COMPO     00009|Convert a Fixed length table to a Standard Table            |Convierte una tabla de longitud fija a una standard         |
-|COMPO     00010|Convert a Fixed length table to a Standard Table without len|Convierte tabla de longitud fija a standard sin decir longit|
-|COMPO     00011|Merge multiple OTF into one PDF                             |Unifica m鷏tiples OTF en un 鷑ico PDF                       |
-|COMPO     00012|Read the file content                                       |Leer el contenido del archivo                               |
-|COMPO     00013|Save the ZIP File                                           |Grabar el archivo ZIP                                       |
-|COMPO     00014|Convert a Standard Table to a String table                  |Convierte una Tabla Standard en una Tabla de String         |
-|COMPO     00015|Convert a String Table to a Standard Table                  |Convierte una Tabla de String en una Tabla Standard         |
-|SUBCO     00018|File Name on the Application Server                         |Nombre del archivo en el Servidor de Aplicaci髇             |
-|SUBCO     00020|Zip Utility                                                 |Utilidad ZIP                                                |
-|SUBCO     00021|File Content                                                |Contenido del archivo                                       |
-|SUBCO     00022|Format not supported                                        |Formato no soportado                                        |
-|SUBCO     00023|File Size in Mb                                             |Tama駉 del archivo en Mb                                    |
-|SUBCO     00024|File Type (ASCII, Binary)                                   |Tipo de archivo (ASCII, Binario)                            |
-|SUBCO     00029|File Content                                                |Contenido del archivo                                       |
-|SUBCO     00032|File List                                                   |Lista de archivos                                           |
-|SUBCO     00033|FILES table empty                                           |Tabla FILES vac韆                                           |
-|SUBCO     00034|File Name on the Application Server                         |Nombre del archivo en el Servidor de Aplicaci髇             |
-|SUBCO     00035|File Name on the Application Server                         |Nombre del archivo en el Servidor de Aplicaci髇             |
-|SUBCO     00036|Binary ZIP File                                             |Archivo ZIP en binario                                      |
-|SUBCO     00037|Drive Type (FIXED, REMOTE)                                  |Tipo de dispositivo (FIXED, REMOTE)                         |
-|SUBCO     00038|Letter Drive (Windows ex: Q)                                |Letra de la unidad (Windows ej: Q)                          |
-|SUBCO     00039|Logical Path                                                |Path l骻ico                                                 |
-|SUBCO     00040|Wrong path format                                           |Formato del path incorrecto                                 |
-|SUBCO     00041|Real Path  (UNC or Physical)                                |Path real (UNC o F韘ico)                                    |
-|SUBCO     00042|Error when assign a value                                   |Error asignando un valor                                    |
-|SUBCO     00043|Table with Strings                                          |Tabla con Strings                                           |
-|SUBCO     00044|Table with lengths                                          |Tabla con longitudes                                        |
-|SUBCO     00046|Table with Strings                                          |Tabla con Strings                                           |
-|SUBCO     00047|Output table                                                |Tabla de salida                                             |
-|SUBCO     00048|Size of Document Content                                    |Tama駉 del contenido del documento                          |
-|SUBCO     00049|OTF Table with copies                                       |Tabla OTF con la cantidad de copias                         |
-|SUBCO     00050|PDF File                                                    |Archivo PDF                                                 |
-|SUBCO     00051|File List Structure                                         |Estructura de listado de archivos                           |
-|SUBCO     00052|File Content                                                |Contenido del archivo                                       |
-|SUBCO     00054|Binary ZIP File                                             |Archivo ZIP en binario                                      |
-|SUBCO     00056|Zip Utility                                                 |Utilidad ZIP                                                |
-|SUBCO     00057|Type Standard Table                                         |Tipo Tabla Standard                                         |
-|SUBCO     00058|Type Stringtab                                              |Tipo Tabla String                                           |
-|SUBCO     00059|Split string table by...                                    |Separar tabla string por...                                 |
-|SUBCO     00060|Error when assign a value                                   |Error asignando un valor                                    |
-|SUBCO     00061|Table with Strings                                          |Tabla con Strings                                           |
-|SUBCO     00062|Table in standard structure                                 |Tabla en estructura est醤dard                               |
-|SUBCO     00063|Split by                                                    |Separar por                                                 |
--------------------------------------------------------------------------------------------------------------------------------------------
+06.11.2018                                                     Dynamic List Display                                                             1
+-------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------
+|Text Key             |Source Text                                                 |Translated Text                                             |
+-------------------------------------------------------------------------------------------------------------------------------------------------
+|CLASS     00001      |File Utilities                                              |Utilidades de Archivo                                       |
+|COMPO     00002      |Add the file to the ZIP                                     |Agregar el archivo al ZIP                                   |
+|COMPO     00003      |Copy a file from Presentation Server to Application Server  |Copiar un archivo de la PC local al Servidor                |
+|COMPO     00004      |Copy a file from Application Server to Application Server   |Copiar un archivo del Servidor a la PC                      |
+|COMPO     00005      |Calculate File Size                                         |Calcular el tama帽o del archivo                              |
+|COMPO     00006      |Recursive to reduce the length at the last field            |Recursivo para reducir la longitud por el 煤ltimo campo      |
+|COMPO     00007      |Convert the data to xstring                                 |Convertir los datos a un xstring                            |
+|COMPO     00008      |Convert a generic structure to a string respecting blanks   |Convertir estruct. gen茅rica a un string respetando blancos  |
+|COMPO     00009      |Create a ZIP file in the application server                 |Crear el archivo ZIP en el Servidor de Aplicaci贸n           |
+|COMPO     00010      |Save the ZIP file in the app server                         |Grabar el archivo ZIP en el Servidor de Aplicaci贸n          |
+|COMPO     00011      |Return the real path (UNC) and the resource type            |Devuelve el path real (UNC) y el tipo de recurso            |
+|COMPO     00012      |Convert a Fixed length table to a Standard Table            |Convierte una tabla de longitud fija a una standard         |
+|COMPO     00013      |Convert a Fixed length table to a Standard Table without len|Convierte tabla de longitud fija a standard sin decir longit|
+|COMPO     00014      |Get File Separator                                          |Obtener el separador de archivos                            |
+|COMPO     00015      |Get Component Max Length                                    |Obtener la longitud m谩xima de un componentes                |
+|COMPO     00016      |Merge multiple OTF into one PDF                             |Unifica m煤ltiples OTF en un 煤nico PDF                       |
+|COMPO     00017      |Read the file content                                       |Leer el contenido del archivo                               |
+|COMPO     00018      |Save the ZIP File                                           |Grabar el archivo ZIP                                       |
+|COMPO     00019      |Convert a Standard Table to a String table                  |Convierte una Tabla Standard en una Tabla de String         |
+|COMPO     00020      |Convert a String Table to a Standard Table                  |Convierte una Tabla de String en una Tabla Standard         |
+|SUBCO     00023      |File Name on the Application Server                         |Nombre del archivo en el Servidor de Aplicaci贸n             |
+|SUBCO     00025      |Zip Utility                                                 |Utilidad ZIP                                                |
+|SUBCO     00026      |System Exception for Code Page Converter Initialization     |Excepci贸n del sistema en la conversi贸n de Code Page         |
+|SUBCO     00027      |System exception when converting character set              |Excepci贸n del sistema al convertir el set de caracteres     |
+|SUBCO     00028      |System Exceptions Accessing File                            |Excepci贸n del sistema al acceder al archivo                 |
+|SUBCO     00029      |System Exceptions Accessing File                            |Excepci贸n del sistema al acceder al archivo                 |
+|SUBCO     00030      |System Exceptions Accessing File                            |Excepci贸n del sistema al acceder al archivo                 |
+|SUBCO     00031      |System Exceptions Accessing File                            |Excepci贸n del sistema al acceder al archivo                 |
+|SUBCO     00032      |System Exceptions Accessing File                            |Excepci贸n del sistema al acceder al archivo                 |
+|SUBCO     00033      |Exception Class with Error Messages from Table T100         |Clase de excepci贸n con mensaje de error de la tabla T100    |
+|SUBCO     00034      |'X' = Move File                                             |'X' = Mover Archivo                                         |
+|SUBCO     00035      |Source File                                                 |Archivo origen                                              |
+|SUBCO     00036      |Target File                                                 |Archivo Destino                                             |
+|SUBCO     00037      |System Exception for Code Page Converter Initialization     |Excepci贸n del sistema en la conversi贸n de Code Page         |
+|SUBCO     00038      |System exception when converting character set              |Excepci贸n del sistema al convertir el set de caracteres     |
+|SUBCO     00039      |System Exceptions Accessing File                            |Excepci贸n del sistema al acceder al archivo                 |
+|SUBCO     00040      |System Exceptions Accessing File                            |Excepci贸n del sistema al acceder al archivo                 |
+|SUBCO     00041      |System Exceptions Accessing File                            |Excepci贸n del sistema al acceder al archivo                 |
+|SUBCO     00042      |System Exceptions Accessing File                            |Excepci贸n del sistema al acceder al archivo                 |
+|SUBCO     00043      |System Exceptions Accessing File                            |Excepci贸n del sistema al acceder al archivo                 |
+|SUBCO     00044      |Exception Class with Error Messages from Table T100         |Clase de excepci贸n con mensaje de error de la tabla T100    |
+|SUBCO     00045      |'X' = Move File                                             |'X' = Mover Archivo                                         |
+|SUBCO     00046      |Source File                                                 |Archivo origen                                              |
+|SUBCO     00047      |Target File                                                 |Archivo Destino                                             |
+|SUBCO     00048      |File Content                                                |Contenido del archivo                                       |
+|SUBCO     00049      |Format not supported                                        |Formato no soportado                                        |
+|SUBCO     00050      |File Size in Mb                                             |Tama帽o del archivo en Mb                                    |
+|SUBCO     00051      |File Type (ASCII, Binary)                                   |Tipo de archivo (ASCII, Binario)                            |
+|SUBCO     00056      |File Content                                                |Contenido del archivo                                       |
+|SUBCO     00061      |Convert in output format                                    |Convertir al formato de salida                              |
+|SUBCO     00062      |File List                                                   |Lista de archivos                                           |
+|SUBCO     00063      |FILES table empty                                           |Tabla FILES vac铆a                                           |
+|SUBCO     00064      |File Name on the Application Server                         |Nombre del archivo en el Servidor de Aplicaci贸n             |
+|SUBCO     00065      |File Name on the Application Server                         |Nombre del archivo en el Servidor de Aplicaci贸n             |
+|SUBCO     00066      |Binary ZIP File                                             |Archivo ZIP en binario                                      |
+|SUBCO     00067      |Drive Type (FIXED, REMOTE)                                  |Tipo de dispositivo (FIXED, REMOTE)                         |
+|SUBCO     00068      |Letter Drive (Windows ex: Q)                                |Letra de la unidad (Windows ej: Q)                          |
+|SUBCO     00069      |Logical Path                                                |Path l贸gico                                                 |
+|SUBCO     00070      |Wrong path format                                           |Formato del path incorrecto                                 |
+|SUBCO     00071      |Real Path  (UNC or Physical)                                |Path real (UNC o F铆sico)                                    |
+|SUBCO     00072      |Error when assign a value                                   |Error asignando un valor                                    |
+|SUBCO     00073      |Table with Strings                                          |Tabla con Strings                                           |
+|SUBCO     00074      |Table with lengths                                          |Tabla con longitudes                                        |
+|SUBCO     00076      |Table with Strings                                          |Tabla con Strings                                           |
+|SUBCO     00077      |Output table                                                |Tabla de salida                                             |
+|SUBCO     00078      |Program is running in the background                        |El programa est谩 corriendo en background                    |
+|SUBCO     00085      |Get output length                                           |Obtener el largo de salida                                  |
+|SUBCO     00086      |Size of Document Content                                    |Tama帽o del contenido del documento                          |
+|SUBCO     00087      |OTF Table with copies                                       |Tabla OTF con la cantidad de copias                         |
+|SUBCO     00088      |PDF File                                                    |Archivo PDF                                                 |
+|SUBCO     00089      |File List Structure                                         |Estructura de listado de archivos                           |
+|SUBCO     00090      |File Content                                                |Contenido del archivo                                       |
+|SUBCO     00092      |Binary ZIP File                                             |Archivo ZIP en binario                                      |
+|SUBCO     00094      |Zip Utility                                                 |Utilidad ZIP                                                |
+|SUBCO     00095      |Float quantity decimals                                     |Cantidad de decimales en un flotante                        |
+|SUBCO     00096      |Fields enclosed by...                                       |Campos encerrados entre...                                  |
+|SUBCO     00097      |Type Standard Table                                         |Tipo Tabla Standard                                         |
+|SUBCO     00098      |Type Stringtab                                              |Tipo Tabla String                                           |
+|SUBCO     00099      |Split string table by...                                    |Separar tabla string por...                                 |
+|SUBCO     00100      |Error when assign a value                                   |Error asignando un valor                                    |
+|SUBCO     00101      |Table with Strings                                          |Tabla con Strings                                           |
+|SUBCO     00102      |Table in standard structure                                 |Tabla en estructura est谩ndard                               |
+|SUBCO     00103      |Split by                                                    |Separar por                                                 |
+|TEXT   E01      00001|Error opening source file                                   |Error abriendo el archivo origen                            |
+|TEXT   E02      00002|Error opening destination file                              |Error abriendo el archivo destino                           |
+-------------------------------------------------------------------------------------------------------------------------------------------------
